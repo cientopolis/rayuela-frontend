@@ -1,0 +1,41 @@
+{
+    "navBar": {
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
+        "about": "Acerca de"
+    },
+
+    "footer": {
+        "source_code": "El código fuente ",
+        "software_license": "está registrado bajo licencia ",
+        "website_license": "El contenido del sitio está registrado bajo licencia "
+    },
+
+    "login": {
+        "title": "Iniciar sesión",
+        "email_field": "Correo electrónico",
+        "email_placeholder": "Ingrese correo electrónico",
+        "password": "Contraseña",
+        "password_placeholder": "Ingrese contraseña",
+        "button": "Ingresar"
+    },
+
+    "register": {
+        "title": "Registro de cuenta",
+        "user_field": "Usuario/a",
+        "user_placeholder": "Ingrese nombre de usuario/a",
+        "email_field": "Correo electrónico",
+        "email_placeholder": "Ingrese correo electrónico",
+        "password": "Contraseña",
+        "password_placeholder": "Ingrese contraseña",
+        "checkbox": "Acepto los ",
+        "terms": "términos y condiciones",
+        "yes": "Sí",
+        "no": "No",
+        "button": "Registrarse"
+    },
+
+    "about": {
+        "subtitle": "Ciencia ciudadana"
+    }
+}
