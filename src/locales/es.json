@@ -1,7 +1,5 @@
 {
     "navBar": {
-        "login": "Iniciar sesión",
-        "register": "Registrarse",
         "about": "Acerca de"
     },
 
@@ -17,7 +15,8 @@
         "email_placeholder": "Ingrese correo electrónico",
         "password": "Contraseña",
         "password_placeholder": "Ingrese contraseña",
-        "button": "Ingresar"
+        "button_login": "Ingresar",
+        "button_signup": "No tengo cuenta"
     },
 
     "register": {
@@ -32,7 +31,8 @@
         "terms": "términos y condiciones",
         "yes": "Sí",
         "no": "No",
-        "button": "Registrarse"
+        "button_signup": "Registrarse",
+        "button_login": "Ya tengo cuenta"
     },
 
     "about": {

@@ -22,17 +22,10 @@
 
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-start">
-        <a class="navbar-item">
-          <RouterLink to="/login">{{ $t("navBar.login") }}</RouterLink>
-        </a>
-        <a class="navbar-item">
-          <RouterLink to="/register">{{ $t("navBar.register") }}</RouterLink>
-        </a>
-        <a class="navbar-item">
-          <RouterLink to="/about">{{ $t("navBar.about") }}</RouterLink>
-        </a>
+        <!-- TODO: en esta sección estará el dashboard cuando una persona voluntaria ingrese -->
       </div>
       <div class="navbar-end">
+        <RouterLink to="/about"><a class="navbar-item">{{ $t("navBar.about") }}</a></RouterLink> 
         <div>
           <div class="select is-rounded">
             <select v-model="$i18n.locale">

@@ -1,7 +1,5 @@
 {
     "navBar": {
-        "login": "Iniciar sessão",
-        "register": "Registo",
         "about": "Sobre nós"
     }
 }
