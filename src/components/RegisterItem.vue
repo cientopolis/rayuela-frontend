@@ -49,9 +49,12 @@
       </div>
     </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link">{{ $t("register.button") }}</button>
+    <div class="field is-grouped buttons">
+      <div class="control left">
+        <button class="button is-link" type="submit">{{ $t("register.button_signup") }}</button>
+      </div>
+      <div class="right">
+        <RouterLink to="/login"><button id="login" class="button is-link is-light">{{ $t("register.button_login") }}</button></RouterLink>
       </div>
     </div>
   </div>
@@ -65,5 +68,15 @@
 
 .title{
   text-align: center;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .right{
+  display: flex;
+  flex-direction: column;
 }
 </style>

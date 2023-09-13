@@ -6,6 +6,7 @@
   <div class="container">
     <h1 class="title">{{ $t("login.title") }}</h1>
     <br>
+    <div class="form">
       <div class="field">
         <label class="label">{{ $t("login.email_field") }}</label>
         <div class="control">
@@ -20,11 +21,15 @@
         </div>
       </div>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link">{{ $t("login.button") }}</button>
+      <div class="field is-grouped buttons">
+        <div class="control left">
+          <button class="button is-success" type="submit">{{ $t("login.button_login") }}</button>
         </div>
-      </div>
+        <div class="right">
+          <RouterLink to="/register"><button class="button is-link is-light">{{ $t("login.button_signup") }}</button></RouterLink>
+        </div>
+      </div> 
+    </div>
   </div>
 </template>
 
@@ -36,4 +41,15 @@
 .title{
   text-align: center;
 }
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .right{
+  display: flex;
+  flex-direction: column;
+}
+
 </style>
