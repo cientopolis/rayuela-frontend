@@ -36,25 +36,12 @@
       </div>
     </div>
 
-    <div class="field">
-      <div class="control">
-        <label class="radio">
-          <input type="radio" name="question">
-          {{ $t("register.yes") }}
-        </label>
-        <label class="radio">
-          <input type="radio" name="question">
-          {{ $t("register.no") }}
-        </label>
-      </div>
-    </div>
-
     <div class="field is-grouped buttons">
       <div class="control left">
         <button class="button is-link" type="submit">{{ $t("register.button_signup") }}</button>
       </div>
       <div class="right">
-        <RouterLink to="/login"><button id="login" class="button is-link is-light">{{ $t("register.button_login") }}</button></RouterLink>
+        <RouterLink to="/login"><button class="button is-link is-light">{{ $t("register.button_login") }}</button></RouterLink>
       </div>
     </div>
   </div>
