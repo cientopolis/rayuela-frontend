@@ -1,9 +1,9 @@
 <script setup>
-import Login from '../components/LoginItem.vue'
+import Projects from '../components/ProjectsItem.vue'
 </script>
 
 <template>
   <main>
-    <Login />
+    <Projects />
   </main>
 </template>

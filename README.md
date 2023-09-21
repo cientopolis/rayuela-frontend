@@ -13,21 +13,26 @@ Esta plataforma propone un abordaje para incorporar ludificación adaptativa a p
 
 Versión Node (LTS): **v18.17.1**
 ```
-nvm install --lts
+nvm install 18.17.1
 ```
-
-**NOTA:** El archivo _.nvmrc_ contiene esa versión, para activarla cada vez que se trabaje en el desarrollo, hay que ejecutar el comando ```nvm use``` en la raíz del proyecto, donde está ubicado el archivo.
+**NOTA:** última versión LTS hasta el momento de iniciado el proyecto
 
 #### Instalación de VUE
 Versión Vue: **3.3.4**
 
+Clonamos el repositorio
 ```
-npm init vue@latest rayuela-frontend
+git clone https://github.com/cientopolis/rayuela-frontend/
 ```
 
 Ingresamos a la carpeta del proyecto
 ```
 cd rayuela-frontend
+```
+
+Cambiamos a la versión de node del archivo _.nvmrc_ 
+```
+nvm use 
 ```
 
 Instalamos paquetes y dependencias npm

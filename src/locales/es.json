@@ -29,13 +29,19 @@
         "password_placeholder": "Ingrese contraseña",
         "checkbox": "Acepto los ",
         "terms": "términos y condiciones",
-        "yes": "Sí",
-        "no": "No",
         "button_signup": "Registrarse",
         "button_login": "Ya tengo cuenta"
     },
 
     "about": {
         "subtitle": "Ciencia ciudadana"
+    },
+
+    "projects": {
+        "title": "Rayuela",
+        "subtitle": "Proyectos de Ciencia ciudadana",
+        "button_login": "Ingresar",
+        "button_signup": "Registrarse"
     }
+
 }
