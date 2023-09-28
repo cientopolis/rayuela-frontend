@@ -42,6 +42,11 @@
         "subtitle": "Proyectos de Ciencia ciudadana",
         "button_login": "Ingresar",
         "button_signup": "Registrarse"
+    },
+
+    "project": {
+        "button_join": "Unirse"
     }
+
 
 }

@@ -5,6 +5,7 @@ import { ref, onMounted } from 'vue'
 const projects = ref([])
 const errors = []
 const tarjetas = [1,2,3,4,5]
+const large_text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis harum ipsam quibusdam, nam id nemo nisi doloremque. Modi velit dolores, ducimus illum libero rerum debitis fuga quos, illo, vero facilis!"
 
 onMounted(async() => {
   try {
@@ -32,40 +33,32 @@ onMounted(async() => {
         <RouterLink to="/register"><button class="button is-link">{{ $t("projects.button_signup") }}</button></RouterLink>
       </div>
     </div> 
-
-      <div  class="container" >
+      <div class="container">
         <div v-for="project in tarjetas" :key="project.id">
-          <div class="card">
-            <div>
-              <figure class="image is-4by3">
-                <img src="../assets/img/rayuela_640.jpg" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
+            <div class="card">
+              <RouterLink to="/project">
+                <div>
+                  <figure class="image is-4by3">
                     <img src="../assets/img/rayuela_640.jpg" alt="Placeholder image">
                   </figure>
                 </div>
-                <div class="media-content">
-                  <p class="title is-4"> Nombre de proyecto</p>
-                  <!-- <div class="subtitle is-6">
-                    <ul v-for="admin in project.admins" :key="admin.id">
-                      <li>{{ admin }}</li>
-                    </ul>
-                  </div> -->
+                <div class="card-content">
+                  <div class="title is-4">
+                    Nombre de proyecto
+                  </div>
+                  <div class="content">
+                    <div>
+                      <div v-if="large_text.length<100">{{ large_text }}</div>
+                      <div v-else>{{ large_text.substring(0,100)+"..." }}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Officiis harum ipsam quibusdam, nam id nemo nisi doloremque.
-                Modi velit dolores, ducimus illum libero rerum debitis fuga quos, illo, vero facilis!
-              </div>
+              </RouterLink>
             </div>
-          </div>
+
         </div>
       </div>
+
 
     <!-- <div class="projects" v-for="project in projects" :key="project.id">
       <div class="card">
@@ -103,6 +96,7 @@ onMounted(async() => {
 .card{
   width: 360px;
   margin: 10px;
+  padding: 5px;
   -webkit-box-shadow: 4px 4px 5px 1px rgba(15,14,15,0.6);
   -moz-box-shadow: 4px 4px 5px 1px rgba(15,14,15,0.6);
   box-shadow: 4px 4px 5px 1px rgba(15,14,15,0.6);
@@ -122,6 +116,9 @@ onMounted(async() => {
   text-align: center;
 }
 
+.content{
+  color: gray;
+}
 /* .projects{
   display: flex;
   flex-wrap: wrap;
