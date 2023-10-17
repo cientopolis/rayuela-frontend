@@ -15,7 +15,7 @@ const props = defineProps({
       <div class="modal-container">
         <div class="modal-header">
           <slot name="header">
-            <h2 class="title">{{ props.name }}</h2>
+            <h2 class="title is-link">{{ props.name }}</h2>
         </slot>
         </div>
 
@@ -66,9 +66,8 @@ const props = defineProps({
 
 .modal-header h2 {
   margin: 0;
-  background-color: rgb(0, 111, 139);
-  color: whitesmoke;
   text-align: center;
+  padding: 1rem;
 }
 
 .modal-body {
@@ -84,6 +83,7 @@ const props = defineProps({
 
 .modal-image{
   max-width: 100%;
+  padding: 1rem;
 }
 
 .modal-footer{
