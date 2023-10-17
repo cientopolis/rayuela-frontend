@@ -40,6 +40,12 @@ Instalamos paquetes y dependencias npm
 npm install
 ```
 
+#### Variables de entorno
+
+1. Copiar el archivo _env.example_ y llamarlo **.env** (o **.env.production** en producción)
+2. Completar las variables dentro del archivo con los datos para trabajar en local o producción
+3. Para hacer uso de este archivo de configuración en el código, usar ```import.meta.env.<CLAVE>```. Ej: ```import.meta.env.VITE_ROOT_API```
+
 ## Despliegue de la aplicación
 ```
 npm run dev
