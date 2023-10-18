@@ -3,6 +3,7 @@
 const props = defineProps({
   show: Boolean,
   name: String,
+  web: String,
   image: String,
   description: String
 })
@@ -23,6 +24,9 @@ const props = defineProps({
           <slot name="body">
             <div class="modal-image">
                 <img :src="props.image" alt="Placeholder image">
+            </div>
+            <div v-if="props.web" class="modal-web">
+              <a :href="props.web" target="_blank"><button class="button is-info">Web del proyecto</button></a>
             </div>
             <div class="modal-description">
                 <p>{{ props.description }}</p>

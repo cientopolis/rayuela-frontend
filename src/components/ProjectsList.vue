@@ -34,11 +34,11 @@ onMounted(async() => {
     <div class="container">
       <Teleport to="body">
         <!-- use the modal component, pass in the prop -->
-        <Project :show="showModal" :name="getName" :image="getImage" :description="getDescription" @close="showModal=false">
+        <Project :show="showModal" :name="getName" :web="getWeb" :image="getImage" :description="getDescription" @close="showModal=false">
         </Project>
       </Teleport>
       <div v-for="project in projects" :key="project.id">
-        <div class="card" @click="showModal=true, getName=project.name, getImage=project.image, getDescription=project.description">
+        <div class="card" @click="showModal=true, getName=project.name, getWeb=project.web, getImage=project.image, getDescription=project.description">
             <div>
               <figure class="image is-4by3">
                 <img :src="project.image" alt="Placeholder image">
