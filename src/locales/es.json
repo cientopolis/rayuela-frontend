@@ -45,7 +45,9 @@
     },
 
     "project": {
-        "button_join": "Unirse"
+        "button_join": "Unirse",
+        "button_close": "Cerrar",
+        "button_website": "Sitio web del proyecto"
     }
 
 

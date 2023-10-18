@@ -26,7 +26,7 @@ const props = defineProps({
                 <img :src="props.image" alt="Placeholder image">
             </div>
             <div v-if="props.web" class="modal-web">
-              <a :href="props.web" target="_blank"><button class="button is-info">Web del proyecto</button></a>
+              <a :href="props.web" target="_blank"><button class="button is-info">{{ $t("project.button_website") }}</button></a>
             </div>
             <div class="modal-description">
                 <p>{{ props.description }}</p>
@@ -37,7 +37,7 @@ const props = defineProps({
         <div class="modal-footer">
           <slot name="footer">
             <button id="join" class="button is-success" type="submit">{{ $t("project.button_join") }}</button>
-            <button id="close" class="button is-danger" @click="$emit('close')">Cerrar</button>
+            <button id="close" class="button is-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
           </slot>
         </div>
       </div>
