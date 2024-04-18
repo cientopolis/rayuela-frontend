@@ -2,6 +2,26 @@
 
 Esta plataforma propone un abordaje para incorporar ludificación adaptativa a proyectos de ciencia ciudadana
 
+## Tecnologías - Versiones
+
+### Base de datos
+
+- **Postgres** o **mysql**
+
+### Backend/Backoffice
+
+- **Django** *v4.1.1* con **Python** *v3.8*
+
+### API
+
+- **Django Rest Framework** *v3.14.0*
+
+### Frontend Web
+
+- **VueJS** *3\.3.4* con **npm** *v18.17.1*
+
+![](rayuela.png)
+
 ## Pre-requisitos
 
 * Se recomienda tener instalado [nvm](https://github.com/nvm-sh/nvm) para manejar diferentes versiones de node
