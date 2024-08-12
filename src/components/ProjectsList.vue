@@ -12,6 +12,7 @@ const errors = []
 const showModal = ref(false)
 
 onMounted(async() => {
+  /*
   if(localStorage.getItem("token")){
     router.push({ path: '/dashboard' })
   }
@@ -27,7 +28,16 @@ onMounted(async() => {
   } catch (e) {
       errors.push(e)
   }
-
+*/
+try {
+    const response = await fetch('../../public/archivos_prueba/mockProjects.json');
+    if (!response.ok) {
+      throw new Error('Error al cargar las insignias');
+    }
+    projects.value = await response.json();
+  } catch (error) {
+    console.error(error);
+  }
 })
 
 </script>

@@ -52,6 +52,7 @@ const props = defineProps({
   top: 0;
   left: 0;
   width: 100%;
+  
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -60,6 +61,7 @@ const props = defineProps({
 
 .modal-container {
   max-width: 1080px;
+  
   margin: auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -86,7 +88,7 @@ const props = defineProps({
 }
 
 .modal-image{
-  max-width: 100%;
+  max-width: 360px;
   padding: 1rem;
 }
 

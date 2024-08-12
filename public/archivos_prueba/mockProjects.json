@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "name": "Proyecto A",
+      "web": "https://example.com/a",
+      "image": "../../src/assets/img/document-4694351_640.png",
+      "description": "Descripción del Proyecto A."
+    },
+    {
+      "id": 2,
+      "name": "Proyecto B",
+      "web": "https://example.com/b",
+      "image": "../../src/assets/img/document-4694351_640.png",
+      "description": "Descripción del Proyecto B."
+    },
+    {
+      "id": 3,
+      "name": "Proyecto C",
+      "web": "https://example.com/c",
+      "image": "../../src/assets/img/document-4694351_640.png",
+      "description": "Descripción del Proyecto C."
+    }
+]
+  

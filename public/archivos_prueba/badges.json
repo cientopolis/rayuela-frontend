@@ -1,0 +1,36 @@
+[
+    {
+      "name": "Insignia del Guerrero",
+      "description": "Gana esta insignia al completar el nivel 10.",
+      "icon": "../../src/assets/img/rayuela_640.jpg",
+      "category": "Épica",
+      "points": 100,
+      "difficulty": "Difícil",
+      "obtainedDate": "2024-08-05",
+      "requirements": "Completa el nivel 9",
+      "celebrationText": "¡Felicidades! Has alcanzado el nivel de Guerrero."
+    },
+    {
+      "name": "Insignia del Novato",
+      "description": "Gana esta insignia al completar el nivel 1.",
+      "icon": "../../src/assets/img/rayuela_640.jpg",
+      "category": "Común",
+      "points": 10,
+      "difficulty": "Fácil",
+      "obtainedDate": "2024-07-15",
+      "requirements": "Completa el nivel 1",
+      "celebrationText": "¡Bienvenido al juego! Has completado el nivel 1."
+    },
+    {
+      "name": "Maestro de las Estrategias",
+      "description": "Gana esta insignia al vencer al jefe final en el nivel 5.",
+      "icon": "../../src/assets/img/rayuela_640.jpg",
+      "category": "Épica",
+      "points": 50,
+      "difficulty": "Difícil",
+      "obtainedDate": "2024-08-09",
+      "requirements": "Derrota al jefe final en el nivel 5",
+      "celebrationText": "¡Impresionante! Has demostrado ser un verdadero estratega al vencer al jefe final del nivel 5."
+    }
+]
+  

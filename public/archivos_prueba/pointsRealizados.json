@@ -1,0 +1,10 @@
+[
+    {
+      "position": [51.505, -0.09],
+      "popup": "Ubicación 1 en mapa 1"
+    },
+    {
+      "position": [51.515, -0.1],
+      "popup": "Ubicación 2 en mapa 2"
+    }
+]

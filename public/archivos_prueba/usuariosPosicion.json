@@ -1,0 +1,52 @@
+[
+    {
+        "score":85,
+        "nombre":"Pepe",
+        "insignias": [1,2]
+    },
+    {
+        "score":75,
+        "nombre":"Jeremias",
+        "insignias": [1]
+    },
+    {
+        "score":65,
+        "nombre":"Javier",
+        "insignias": [1,2,4]
+    },
+    {
+        "score":55,
+        "nombre":"Leonela",
+        "insignias": []
+    },
+    {
+        "score":45,
+        "nombre":"Pepe",
+        "insignias": [1]
+    },
+    {
+        "score":35,
+        "nombre":"Jeremias",
+        "insignias": [1,2,5,6]
+    },
+    {
+        "score":25,
+        "nombre":"Javier",
+        "insignias": [1]
+    },
+    {
+        "score":15,
+        "nombre":"Leonela",
+        "insignias": []
+    },
+    {
+        "score":5,
+        "nombre":"Javier",
+        "insignias": [1,2,5]
+    },
+    {
+        "score":0,
+        "nombre":"Leonela",
+        "insignias": [1,2]
+    }
+]
