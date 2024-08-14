@@ -1,79 +1,76 @@
 
 <script setup>
 
-import {onMounted,ref} from "vue"
-
+import { onMounted, ref } from "vue";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 
-let temas = ref([])
-const url = ref('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-const attribution = ref('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors')
+const url = ref('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+const attribution = ref('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
 
-const center1 = ref([51.505, -0.09])
-const zoom1 = ref(13)
-const select = ref("")
-const fecha = ref("")
-const exitoso = ref(false)
-const marcador = ref()
+const center1 = ref([51.505, -0.09]);
+const zoom1 = ref(13);
+const marcador = ref(null);
+const map1 = ref(null);
+
+let temas = ref([]);
+const select = ref("");
+const fecha = ref("");
+const exitoso = ref(false);
 
 onMounted(async () => {
-   
-    const map1 = L.map('map').setView(center1.value, zoom1.value);
-    L.tileLayer(url.value, { attribution: attribution.value }).addTo(map1);
+    map1.value = L.map('map').setView(center1.value, zoom1.value);
+    L.tileLayer(url.value, { attribution: attribution.value }).addTo(map1.value);
 
+    map1.value.on('click', function(e) {
+        if (marcador.value) {
+            map1.value.removeLayer(marcador.value);
+        }
 
-    map1.on('click', function(e) {
-            const latlng = e.latlng;
-            marcador.value = L.marker([latlng.lat, latlng.lng]).addTo(map1)
-                .bindPopup('Marcador en [' + latlng.lat + ', ' + latlng.lng + ']')
-                .openPopup();
-            if(marcador.value !== null){
-                console.log("ho")
-                map1.removeLayer(marcador)
-            }          
-           
-            
-        });
+        const latlng = e.latlng;
+        marcador.value = L.marker([latlng.lat, latlng.lng]).addTo(map1.value)
+            .bindPopup('Marcador en [' + latlng.lat + ', ' + latlng.lng + ']')
+            .openPopup();              
+    });
 
     try {
-    const response = await fetch('../../public/archivos_prueba/temasProyecto.json');
-    if (!response.ok) {
-      throw new Error('Error al cargar las insignias');
+        const response = await fetch('../../public/archivos_prueba/temasProyecto.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los temas');
+        }
+    
+        const data = await response.json();
+        temas.value = data;
+
+    } catch (error) {
+        console.error(error);
     }
+});
+
+const enviar = () => {
+    if (select.value === "") return;
+    if (fecha.value === "") return;
+    if (!marcador.value) return;
+    exitoso.value = true;
+
+    setTimeout(() => { exitoso.value = false }, 2000);
     
-    const data = await response.json();
-    temas.value = data
+    console.log({tipo: select.value, fecha: fecha.value, cordenada: {lat: marcador.value.getLatLng().lat, long:  marcador.value.getLatLng().lng}});
 
-  } catch (error) {
-    console.error(error);
-  }
-})
-
-const enviar = () =>{
-    if(select.value ==="")return
-    if(fecha.value ==="")return
-    console.log("33")
-    exitoso.value = true
-
-    setTimeout(() => {exitoso.value = false},2000)
-    console.log(select.value)
-    console.log(fecha.value)
-    console.log(marcador.value.getLatLng())
-
-    
 }
 
 const resetear = () => {
-    select.value = ""
-    fecha.value = ""
-    
+    select.value = "";
+    fecha.value = "";
+
+    if (marcador.value) {
+        map1.value.removeLayer(marcador.value);
+        marcador.value = null; 
+    }
 }
-
-
-
 </script>
+
 
 
 <template>
