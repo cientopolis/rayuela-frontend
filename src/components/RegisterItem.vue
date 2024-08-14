@@ -58,8 +58,9 @@ async function signup() {
         // email.value = ""
         // password1.value = ""
         // password2.value = ""
-    }).catch ( () => {
+    }).catch ( (e) => {
       //toast.error("Credenciales de acceso incorrectas", {autoClose: 3000});
+      console.log(e)
       console.log("ERROR AL REGISTRAR");
     })
   } else {

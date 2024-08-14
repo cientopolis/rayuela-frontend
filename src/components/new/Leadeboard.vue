@@ -103,9 +103,9 @@ table{
 }
 
 .posicion2{
-  background-color: grey;
-  color: rgb(177, 169, 169);
-
+  background-color: #BEBEBE;
+  color: rgb(143, 137, 137);
+  
   .posicion::after{
     content: "🥈";
   }

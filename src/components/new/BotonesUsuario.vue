@@ -2,6 +2,8 @@
 <script setup>
   import 'vue3-toastify/dist/index.css';
   import { ref, onMounted } from 'vue';
+  import { useRouter } from 'vue-router';
+  const router =  useRouter()
   import axios from 'axios';
   
   const score = ref(0);
@@ -18,11 +20,12 @@
 
   const register = () => {
     // ir a la ruta de registro de check-in
+    router.push({ path: '/checkin' })
     console.log('Registro');
   };
   
   const logout = () => {
-    //Volver al  dashboard del usuario
+    router.push({ path: '/dashboard' })
     console.log('Cerrar sesión');
   };
 </script>

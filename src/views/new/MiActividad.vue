@@ -7,6 +7,7 @@
 
 <template>
   <main class="main-div">
+    <!--Descripcion del proyecto o info del mismo-->
     <Buttons />
     <Leaderboard/>
     <Badges />
