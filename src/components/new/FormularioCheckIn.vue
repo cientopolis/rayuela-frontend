@@ -4,13 +4,20 @@
 import { onMounted, ref } from "vue";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
+import { RouterLink } from 'vue-router';
+const valoresTexto = {
+    defecto:"CheckIn",
+    exito:"Exitoso",
+    noExitoso:"No Exitoso",
+    sinCampos:"Faltan completar campos"
+}
+let texto = ref(valoresTexto.defecto)
 
 const url = ref('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 const attribution = ref('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
 
-const center1 = ref([51.505, -0.09]);
-const zoom1 = ref(13);
+const center1 = ref([-34.706285, -58.27789]);
+const zoom1 = ref(15);
 const marcador = ref(null);
 const map1 = ref(null);
 
@@ -18,6 +25,7 @@ let temas = ref([]);
 const select = ref("");
 const fecha = ref("");
 const exitoso = ref(false);
+const noExitoso = ref(false)
 
 onMounted(async () => {
     map1.value = L.map('map').setView(center1.value, zoom1.value);
@@ -49,12 +57,19 @@ onMounted(async () => {
 });
 
 const enviar = () => {
-    if (select.value === "") return;
-    if (fecha.value === "") return;
-    if (!marcador.value) return;
-    exitoso.value = true;
-
-    setTimeout(() => { exitoso.value = false }, 2000);
+    if (select.value === "" || fecha.value === "" || !marcador.value) {
+        noExitoso.value =  true
+        texto.value = valoresTexto.sinCampos
+    }else{
+        exitoso.value = true;
+        texto.value = valoresTexto.exito;
+    }
+    
+    
+    setTimeout(() => { exitoso.value = false;
+        noExitoso.value = false; 
+        texto.value = valoresTexto.defecto;
+    }, 2000);
     
     console.log({tipo: select.value, fecha: fecha.value, cordenada: {lat: marcador.value.getLatLng().lat, long:  marcador.value.getLatLng().lng}});
 
@@ -74,14 +89,14 @@ const resetear = () => {
 
 
 <template>
-    <div v-if="exitoso">Exitoso</div>
-    <section class="formularioCheckIn">
+    <RouterLink to="/actividad"><button class="volver" :disabled="exitoso || noExitoso">Regresar a Mi Actividad</button></RouterLink>
+    <section class="formularioCheckIn" :class="{exitoso , noExitoso}">
         
         <div class="contenedorTitulo">
-            <h2 class="titulo">CheckIn</h2>
+            <h2 class="titulo" :class="{titulo_exitoso:exitoso , titulo_noExitoso : noExitoso}">{{ texto }}</h2>
         </div>
         
-        <form action="" >
+        <form action=""  >
             <fieldset>
                 <legend>¿Que?</legend>
                 <label for="tema">Tipo de actividad <span title="required" aria-label="required">*</span></label>
@@ -102,8 +117,8 @@ const resetear = () => {
                     
             </fieldset>
             <section class="botones">
-                <button class="btn btn-enviar" type="button" @click="enviar">Enviar</button>
-                <button class="btn btn-borrar" type="button" @click="resetear">Borrar</button>
+                <button class="btn btn-enviar" type="button" :disabled="exitoso || noExitoso" @click="enviar">Enviar</button>
+                <button class="btn btn-borrar" type="button" :disabled="exitoso || noExitoso" @click="resetear">Borrar</button>
             </section> 
             
         </form>
@@ -120,7 +135,7 @@ const resetear = () => {
     display: flex;
     flex-direction: column;
     border: 2px solid black;
-    padding: 35px;
+    padding: 10px 20px 10px 20px;
     gap:10px;
     box-shadow: 4px 4px  black , -4px 4px black;
 }
@@ -132,12 +147,20 @@ const resetear = () => {
 .titulo{
     width: max-content;
     padding: 12px 24px;
-    font-size: larger;
+    font-size: medium;
     font-weight: 500;
     color: white;
     background-color: rgb(39, 108, 218);
     
     border-radius:10px;
+}
+
+.titulo_exitoso{
+    background-color: rgb(74, 234, 130)  ;
+}
+
+.titulo_noExitoso{
+    background-color:rgb(252, 123, 123)
 }
 
 .botones{
@@ -147,7 +170,7 @@ const resetear = () => {
 
 .map{
     width: 100%;
-    min-height: 250px
+    min-height: 230px
 }
 
 .btn{
@@ -170,6 +193,29 @@ const resetear = () => {
 }
 
 
+.exitoso{
+        border:2px solid rgb(74, 234, 130);
+        box-shadow: 4px 4px rgb(74, 234, 130) , -4px 4px rgb(74, 234, 130);
+   
+}
+
+.noExitoso{
+        border:2px solid rgb(252, 123, 123);
+        box-shadow: 4px 4px rgb(252, 123, 123) , -4px 4px rgb(252, 123, 123);
+   
+}
+
+.volver{
+    cursor: pointer;
+    background-color: aliceblue;
+    padding: 8px 16px;
+    border: 1px  solid black;
+    border-radius: 20px 20px 0 0;
+
+    &:hover{
+        transform: scale(110%);
+    }
+}
 
 
 form{
@@ -187,13 +233,14 @@ fieldset{
 legend{
     margin-bottom: 6px;
     padding: 4px 8px;
-    font-size: x-small;
+    font-size: xx-small;
     color:rgba(0, 0, 0, 0.438);
     background-color: rgba(128, 128, 128, 0.301);
 }
 
 label{
     text-align: center;
+    font-size: smaller;
     font-weight: 500;
     span{
         color: red
