@@ -1,8 +1,11 @@
 <script setup>
 
 import {ref , onMounted} from "vue"
-
+import { useRoute } from "vue-router";
+const route = useRoute()
 let usuarios = ref([]) 
+
+console.log(route.params.id_proyect)
 
 onMounted(async() =>{
     try {

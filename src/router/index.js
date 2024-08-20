@@ -33,9 +33,14 @@ const router = createRouter({
       component: () => import('../views/DashboardView.vue')
     },
     {
-      path: '/actividad',
+      path: '/actividad/',
       name: 'actividad',
       component: () => import('../views/new/MiActividad.vue')
+    },
+    {
+      path: '/proyecto/:id_proyect',
+      name: 'proyecto',
+      component: () => import('../views/new/ProyectInfo.vue')
     },
     {
       path: '/list',
