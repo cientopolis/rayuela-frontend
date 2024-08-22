@@ -38,7 +38,7 @@
       </div>
       <div class="button-container">
         <button class="button register" @click="register">Registrar tarea</button>
-        <button class="button logout" @click="logout">Salir de proyecto</button>
+        <button class="button logout" @click="logout">Volver</button>
       </div>
     </div>    
 </template>
