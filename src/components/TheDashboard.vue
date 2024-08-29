@@ -9,22 +9,14 @@ const router = useRouter()
 const complete_name = ref("")
 const profile_image = ref("")
 const projects_user = ref([])
-// const projects_user = 
-//       ref([{
-//         "name": "Proyecto a mano", "image": "http://localhost:8000/rayuelaApp/static/project_image/rio.jpg",
-//         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-//       },
-//       {
-//         "name": "Segundo proyecto", "image": "http://localhost:8000/rayuelaApp/static/project_image/rio.jpg",
-//         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-//       }])
 
 // TODO: pasar mensajes a locale
 onMounted(() => {
+  /*
   if(!localStorage.getItem("token")){
     router.push({ path: '/login' })
   }
-
+  */
   if (localStorage.getItem("msg_login")=="1"){
     toast.success("Sesión iniciada correctamente", {autoClose: 3000});
     localStorage.removeItem("msg_login")
