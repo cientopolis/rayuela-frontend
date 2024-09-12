@@ -30,17 +30,27 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/DashboardView.vue')
+      component: () => import('../views/DashboardView.vue'),
+      beforeEnter: (to, from) => {
+        window.scrollTo(0, 0);
+    }
     },
     {
-      path: '/actividad/',
+      path: '/actividad/:id',
       name: 'actividad',
-      component: () => import('../views/new/MiActividad.vue')
+      component: () => import('../views/new/MiActividad.vue'),
+      beforeEnter: (to, from) => {
+        window.scrollTo(0, 0);
+    }
+   
     },
     {
       path: '/proyecto/:id_proyect',
       name: 'proyecto',
-      component: () => import('../views/new/ProyectInfo.vue')
+      component: () => import('../views/new/ProyectInfo.vue'),
+      beforeEnter: (to, from) => {
+        window.scrollTo(0, 0);
+    }
     },
     {
       path: '/list',
@@ -48,7 +58,7 @@ const router = createRouter({
       component: () => import('../views/new/List.vue')
     },
     {
-      path: '/checkin',
+      path: '/checkin/:id',
       name: 'checkin',
       component: () => import('../views/new/Checkin.vue')
     }

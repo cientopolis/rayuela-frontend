@@ -16,8 +16,10 @@ onMounted(async() => {
     }
   }
   try {
-      const response = await axios.get(import.meta.env.VITE_ROOT_API+`/projects_diff/`, headers)
-      projects.value = response.data.slice(0,3)
+      //const response = await axios.get(import.meta.env.VITE_ROOT_API+`/projects_diff/`, headers)
+      const response = await fetch('../../public/archivos_prueba/mockProjectsSinUnirse.json')
+      
+      projects.value = await response.json()
       console.log(projects)
   } catch (e) {
       errors.push(e)
@@ -32,11 +34,11 @@ onMounted(async() => {
     <div class="container">
       <Teleport to="body">
         <!-- use the modal component, pass in the prop -->
-        <Project :show="showModal" :name="getName" :web="getWeb" :image="getImage" :description="getDescription" @close="showModal=false">
+        <Project :show="showModal" :unirse="getUnirse" :id="getId" :name="getName" :web="getWeb" :image="getImage" :description="getDescription" @close="showModal=false">
         </Project>
       </Teleport>
       <div v-for="project in projects" :key="project.id">
-        <div class="card" @click="showModal=true, getName=project.name, getWeb=project.web, getImage=project.image, getDescription=project.description">
+        <div class="card" @click="showModal=true, getUnirse=true , getId=project.id , getName=project.name, getWeb=project.web, getImage=project.image, getDescription=project.description">
             <div>
               <figure class="image is-4by3">
                 <img :src="project.image" alt="Placeholder image">

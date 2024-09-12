@@ -5,6 +5,7 @@ import { onMounted, ref } from "vue";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { RouterLink } from 'vue-router';
+import router from "../../router";
 const valoresTexto = {
     defecto:"CheckIn",
     exito:"Exitoso",
@@ -84,12 +85,17 @@ const resetear = () => {
         marcador.value = null; 
     }
 }
+
+const volver = () => {
+    router.go(-1)
+}
+
 </script>
 
 
 
 <template>
-    <RouterLink to="/actividad"><button class="volver" :disabled="exitoso || noExitoso">Regresar a Mi Actividad</button></RouterLink>
+    <button class="volver" @click="volver" :disabled="exitoso || noExitoso">Regresar a Mi Actividad</button>
     <section class="formularioCheckIn" :class="{exitoso , noExitoso}">
         
         <div class="contenedorTitulo">

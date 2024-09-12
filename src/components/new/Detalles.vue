@@ -1,13 +1,20 @@
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 const TITULO = "Titulo del proyecto"
 const CREADOR = "Josesito"
 const CREACION = "17/8/2024"
 const UBICACION = "Quilmes"
 const PARRAFO = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est atque ullam ipsam magnam nisi facilis suscipit dolore aliquid? Aut ea error iusto maiores labore? Voluptatum voluptate neque soluta modi molestias?"
+
+const volver = () => {
+    router.go(-1)
+};
 </script>
 
 <template>
+    <button @click ="volver" class="button">Volver</button>
     <h1 class="titulo">{{ TITULO  }}</h1>
     <section class="info">
         <div class="creador">

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Proyecto Alpha",
+        "web": "https://example.com/alpha",
+        "image": "../../src/assets/img/document-4694351_640.png",
+        "description": "Descripción actualizada del Proyecto Alpha, ahora con nuevas funcionalidades."
+    },
+    {
+        "id": 2,
+        "name": "Proyecto Beta",
+        "web": "https://example.com/beta",
+        "image": "../../src/assets/img/document-4694351_640.png",
+        "description": "Descripción revisada del Proyecto Beta, con mejoras en la interfaz."
+    },
+    {
+        "id": 3,
+        "name": "Proyecto Gamma",
+        "web": "https://example.com/gamma",
+        "image": "../../src/assets/img/document-4694351_640.png",
+        "description": "Descripción extendida del Proyecto Gamma, incluyendo resultados recientes."
+    }
+]

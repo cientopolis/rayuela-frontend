@@ -2,12 +2,15 @@
 <script setup>
   import 'vue3-toastify/dist/index.css';
   import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute,RouterLink } from 'vue-router';
   const router =  useRouter()
+  const route = useRoute();
   import axios from 'axios';
   
   const score = ref(0);
   
+  
+
   onMounted(async () => {
     try {
       // Cambia la URL a la ruta del archivo JSON para pruebas
@@ -18,15 +21,9 @@
     }
   });
 
-  const register = () => {
-    // ir a la ruta de registro de check-in
-    router.push({ path: '/checkin' })
-    console.log('Registro');
-  };
-  
+ 
   const logout = () => {
-    router.push({ path: '/dashboard' })
-    console.log('Cerrar sesión');
+    router.go(-1)
   };
 </script>
 
@@ -37,7 +34,8 @@
         <p class="score">{{ score }}</p>
       </div>
       <div class="button-container">
-        <button class="button register" @click="register">Registrar tarea</button>
+        
+        <RouterLink :to="{ name:'checkin', params: {id: route.params.id }}" ><button  id="checkIn" class="button register" >Registrar tarea</button></RouterLink>
         <button class="button logout" @click="logout">Volver</button>
       </div>
     </div>    

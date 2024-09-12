@@ -1,4 +1,5 @@
 <script setup>
+import Project from './TheProject.vue'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { toast } from 'vue3-toastify';
@@ -9,9 +10,9 @@ const router = useRouter()
 const complete_name = ref("")
 const profile_image = ref("")
 const projects_user = ref([])
-
+const showModal = ref(false)
 // TODO: pasar mensajes a locale
-onMounted(() => {
+onMounted(async() => {
   /*
   if(!localStorage.getItem("token")){
     router.push({ path: '/login' })
@@ -24,6 +25,10 @@ onMounted(() => {
   if(localStorage.getItem("token")){
     user_data()
   }
+  // mockeado despues se borra
+  const response = await fetch('../../public/archivos_prueba/mockProjects.json')
+  projects_user.value = await response.json()
+
 })
 
 async function user_data() {
@@ -42,7 +47,9 @@ async function user_data() {
       localStorage.setItem("projects_user", JSON.stringify(response.data[0].projects))
       complete_name.value = localStorage.getItem("complete_name")
       profile_image.value = localStorage.getItem("profile_image")
-      projects_user.value = JSON.parse(localStorage.getItem("projects_user"))
+      //projects_user.value = JSON.parse(localStorage.getItem("projects_user"))
+      
+      
       console.log("AXIOS GET: " + JSON.stringify(response.data[0].projects))
       //console.log(response.data[0].projects)
       console.log("LOCAL STORAGE: " + JSON.parse(localStorage.getItem("projects_user"))[0].name)
@@ -58,15 +65,20 @@ async function user_data() {
 </script>
 
 <template>
-<div class="container">
-  <div>
-    <h2 class="subtitle">Mis proyectos</h2>
-  </div>
-  <div>
-    <br>
-    <div class="container">
+<div >
+  
+  <h2 class="subtitle">Mis proyectos</h2>
+  
+  
+   
+  <div class="container">
+    <Teleport to="body">
+        <!-- use the modal component, pass in the prop -->
+        <Project :show="showModal" :miActividad="actividad" :id="getId" :name="getName" :web="getWeb" :image="getImage" :description="getDescription" @close="showModal=false">
+        </Project>
+      </Teleport>
       <div v-for="project in projects_user" :key="project.id">
-        <div class="card">
+        <div class="card" @click="showModal=true, actividad=true , getId=project.id, getName=project.name, getWeb=project.web, getImage=project.image, getDescription=project.description">
             <div>
               <figure class="image is-4by3">
                 <img :src="project.image" alt="Placeholder image">
@@ -95,18 +107,19 @@ async function user_data() {
         </div>
       </div>
       <button class="button-more button is-link is-light"> Ver más </button>
-    </div>
-
   </div>
 
 </div>
 
+
+
 </template>
 
-<style>
+<style scoped>
 
 .subtitle{
   font-size: large;
+  text-align: center;
   margin: 10px;
   justify-content: center;
   padding: 1rem;

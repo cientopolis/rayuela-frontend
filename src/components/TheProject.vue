@@ -1,12 +1,27 @@
 <script setup>
-
+ import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
+ const router =  useRouter()
 const props = defineProps({
+  id:Number,
   show: Boolean,
   name: String,
   web: String,
   image: String,
-  description: String
+  description: String,
+  unirse: {
+    type: Boolean,
+    default: false
+  } ,
+  miActividad:{
+    type: Boolean,
+    default: false
+  }
 })
+
+
+
 
 </script>
 
@@ -36,7 +51,9 @@ const props = defineProps({
 
         <div class="modal-footer">
           <slot name="footer">
-            <button id="join" class="button is-success" type="submit">{{ $t("project.button_join") }}</button>
+            <button v-if="unirse" id="join" class="button is-success" type="submit">{{ $t("project.button_join") }}</button>
+            <RouterLink :to="{ name:'actividad', params: {id: props.id}}" v-if="miActividad" ><button  id="actividad" class="button is-success" > Mi Actividad</button></RouterLink>
+            <RouterLink :to="{name:'proyecto', params:{id_proyect: props.id}}"><button id="info" class="button masInfo">Mas</button></RouterLink>
             <button id="close" class="button is-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
           </slot>
         </div>
@@ -45,7 +62,7 @@ const props = defineProps({
   </Transition>
 </template>
 
-<style>
+<style scoped>
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -78,8 +95,12 @@ const props = defineProps({
 
 .modal-body {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   max-width: 1080px;
+  align-items: center;
+  justify-content: center;
   margin: 10px;
   text-align: center;
   -webkit-box-shadow: 4px 4px 5px 1px rgba(15,14,15,0.6);
@@ -88,21 +109,20 @@ const props = defineProps({
 }
 
 .modal-image{
+  
+  
   max-width: 360px;
   padding: 1rem;
 }
 
 .modal-footer{
+  margin-top: 20px;
   display: flex;
   justify-content: center;
+  gap: 15px;
+  align-items: center
 }
 
-#join, #close{
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  margin: 1rem;
-}
 
 .modal-default-button {
   float: right;
@@ -114,6 +134,14 @@ const props = defineProps({
   justify-content: center;
   padding: 1rem;
   font-size: large;
+}
+
+.masInfo{
+  background-color: rgb(39, 108, 218);
+  color: aliceblue;
+  :hover{
+    color: aliceblue;
+  }
 }
 
 /*
