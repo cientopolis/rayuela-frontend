@@ -61,7 +61,7 @@ function logout(){
         <div>
           <div v-if=token>
             {{ username }}
-            <img :src="profile_image" width="32" height="32">
+            <router-link :to="{ name: 'dashboard' }"><img :src="profile_image" width="32" height="32"></router-link>
             <button class="button is-danger" @click="logout()" value="logout">{{ $t("navBar.button_logout") }}</button>
           </div>
           <div v-else>

@@ -1,8 +1,16 @@
 <script setup>
+import { onMounted, ref } from "vue";
 import img from "../../assets/img/rayuela_logo.jpg"
 import NumeroIncremental from './NumeroIncremental.vue'
-const nombre = "Francori8"
+
+const nombre = ref("")
 const texto = {mayorPuntaje: "Mayor Puntaje" , cantidadDeMedallas: "Medallas ganadas", proyectoInscripto: "Proyectos inscriptos" }
+
+onMounted( () =>{
+  if(localStorage.getItem("token")){
+    nombre.value =localStorage.getItem("username")
+  }
+})
 
 </script>
 

@@ -1,7 +1,7 @@
 <script setup>
  import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { RouterLink } from 'vue-router';
+ import { useRouter } from 'vue-router';
+ import { RouterLink } from 'vue-router';
  const router =  useRouter()
 const props = defineProps({
   id:Number,
@@ -19,10 +19,6 @@ const props = defineProps({
     default: false
   }
 })
-
-
-
-
 </script>
 
 <template>

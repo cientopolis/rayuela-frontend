@@ -2,6 +2,8 @@
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
+
+
 const TITULO = "Titulo del proyecto"
 const CREADOR = "Josesito"
 const CREACION = "17/8/2024"

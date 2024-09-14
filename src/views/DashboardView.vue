@@ -13,8 +13,6 @@ import ProjectsList from '../components/ProjectsList.vue';
     <VistaUsuario />
     <Dashboard />
     <ProjectsWithoutTheUser />
-     
-      
 
   </main>
 </template>

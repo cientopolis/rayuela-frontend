@@ -18,5 +18,11 @@ import TheFooter from './components/TheFooter.vue';
 </template>
 
 <style>
-  
+/*
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E0F7FA; 
+  }
+*/    
 </style>
