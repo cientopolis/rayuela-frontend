@@ -4,7 +4,7 @@
 import { onMounted, ref } from "vue";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { RouterLink } from 'vue-router';
+import Resultado from './Resultado.vue'
 import router from "../../router";
 const valoresTexto = {
     defecto:"CheckIn",
@@ -27,6 +27,7 @@ const select = ref("");
 const fecha = ref("");
 const exitoso = ref(false);
 const noExitoso = ref(false)
+const modal = ref(false)
 
 onMounted(async () => {
     map1.value = L.map('map').setView(center1.value, zoom1.value);
@@ -64,12 +65,18 @@ const enviar = () => {
     }else{
         exitoso.value = true;
         texto.value = valoresTexto.exito;
+        
     }
     
     
-    setTimeout(() => { exitoso.value = false;
+    setTimeout(() => { 
+        if(exitoso.value){
+            modal.value = !modal.value;
+        }
+        exitoso.value = false;
         noExitoso.value = false; 
         texto.value = valoresTexto.defecto;
+        
     }, 2000);
     
     console.log({tipo: select.value, fecha: fecha.value, cordenada: {lat: marcador.value.getLatLng().lat, long:  marcador.value.getLatLng().lng}});
@@ -95,6 +102,9 @@ const volver = () => {
 
 
 <template>
+    <Teleport to="body">
+        <Resultado :showModal="modal" @volver="volver"></Resultado>
+    </Teleport>
     <button class="volver" @click="volver" :disabled="exitoso || noExitoso">Regresar a Mi Actividad</button>
     <section class="formularioCheckIn" :class="{exitoso , noExitoso}">
         
@@ -137,7 +147,7 @@ const volver = () => {
 
 .formularioCheckIn{
     width: 40%;
-    min-width: 250px;
+    min-width: 450px;
     display: flex;
     flex-direction: column;
     border: 2px solid black;

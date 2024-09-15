@@ -6,7 +6,7 @@ import CheckIn from "../../components/new/FormularioCheckIn.vue"
 
 <template>
     <main>
-        <CheckIn class="checkIn"/>
+        <CheckIn />
     </main>
         
    

@@ -35,7 +35,6 @@
 
         <div class="modal-footer">
           <slot name="footer">
-            <button id="join" class="button is-success" type="submit">{{ $t("project.button_join") }}</button>
             <button id="close" class="button is-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
           </slot>
         </div>
