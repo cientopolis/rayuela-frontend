@@ -6,6 +6,7 @@ import {toast} from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 import ProjectCard from "@/components/ProjectCard.vue";
 import ViewMoreButton from "@/components/ViewMoreButton.vue";
+import ProjectsService from "@/services/ProjectsService";
 
 const router = useRouter()
 const projects = ref([])
@@ -21,8 +22,8 @@ onMounted(async () => {
     }
   }
   try {
-    const response = await axios.get(import.meta.env.VITE_ROOT_API + `/projects/`)
-    projects.value = response.data.slice(0, 3)
+    const response = await ProjectsService.getProjects()
+    projects.value = response.slice(0, 3)
   } catch (e) {
     errors.push(e)
   }

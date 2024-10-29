@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
-import axios from "axios";
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import authService from "@/services/AuthService";
 
 const router = useRouter()
 const username = ref("")
@@ -17,19 +17,14 @@ onMounted( () =>{
 
 async function login() {
   const user = {"username": username.value, "password": password.value}
-  axios.post(import.meta.env.VITE_ROOT_API + "/token/", user)
-    .then( (response) => {
-      if(response.status===200){
-        localStorage.setItem("msg_login", "1")
-        localStorage.setItem("token", response.data.access)
-        localStorage.setItem("username", user.username)
+  authService.token(user)
+      .then( () => {
         router.push({ path: '/dashboard' })
         location.reload();
-      }
-    })
-    .catch ( () => {
-      toast.error("Credenciales de acceso incorrectas", {autoClose: 3000});
-  })
+      })
+      .catch ( () => {
+        toast.error("Credenciales de acceso incorrectas", {autoClose: 3000});
+      })
 }
 
 </script>

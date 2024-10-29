@@ -1,8 +1,8 @@
 <script setup>
 import {ref} from 'vue'
 import {useRouter} from 'vue-router';
-import axios from "axios";
 import {toast} from "vue3-toastify";
+import AuthService from "@/services/AuthService";
 
 const router = useRouter()
 const username = ref("")
@@ -59,8 +59,8 @@ function is_valid_form(){
 }
 async function signup() {
   if(is_valid_form()){
-    const user = {"username": username.value, "email": email.value, "password": password1.value}
-    axios.post(import.meta.env.VITE_ROOT_API + "/register/", user).then( () => {
+    const user = {username: username.value, email: email.value, password: password1.value}
+    AuthService.register(user).then( () => {
       toast.success('¡Registro exitoso!', {autoClose: 2000});
       setTimeout(() => {
         router.push({ path: '/login' })

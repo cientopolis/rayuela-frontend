@@ -6,6 +6,7 @@ import axios from "axios";
 import 'vue3-toastify/dist/index.css';
 import ProjectCard from "@/components/ProjectCard.vue";
 import ViewMoreButton from "@/components/ViewMoreButton.vue";
+import AuthService from "@/services/AuthService";
 
 const router = useRouter()
 const complete_name = ref("")
@@ -45,16 +46,16 @@ async function user_data() {
   }
   //console.log("HEADERS: " + headers.headers.Authorization)
 
-  axios.get(import.meta.env.VITE_ROOT_API + "/login/", headers)
+  AuthService.login()
       .then(response => {
-        localStorage.setItem("complete_name", response.data[0].complete_name)
-        localStorage.setItem("profile_image", response.data[0].profile_image)
-        localStorage.setItem("projects_user", JSON.stringify(response.data[0].projects))
+        localStorage.setItem("complete_name", response[0].complete_name)
+        localStorage.setItem("profile_image", response[0].profile_image)
+        localStorage.setItem("projects_user", JSON.stringify(response[0].projects))
         complete_name.value = localStorage.getItem("complete_name")
         profile_image.value = localStorage.getItem("profile_image")
         projects_user.value = JSON.parse(localStorage.getItem("projects_user"))
-        console.log("AXIOS GET: " + JSON.stringify(response.data[0].projects))
-        //console.log(response.data[0].projects)
+        console.log("AXIOS GET: " + JSON.stringify(response[0].projects))
+        //console.log(response[0].projects)
         console.log("LOCAL STORAGE: " + JSON.parse(localStorage.getItem("projects_user"))[0].name)
         //console.log("NOMBRE: " + JSON.parse(localStorage.getItem("projects_user")))
       })

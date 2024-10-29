@@ -4,20 +4,15 @@ import {ref, onMounted} from 'vue'
 import 'vue3-toastify/dist/index.css';
 import ProjectCard from "@/components/ProjectCard.vue";
 import ViewMoreButton from "@/components/ViewMoreButton.vue";
+import ProjectsService from "@/services/ProjectsService";
 
 const projects = ref([])
 const errors = []
 
 onMounted(async () => {
-  const token = localStorage.getItem("token")
-  const headers = {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  }
   try {
-    const response = await axios.get(import.meta.env.VITE_ROOT_API + `/projects_diff/`, headers)
-    projects.value = response.data.slice(0, 3)
+    const response = await ProjectsService.getDiffProjects();
+    projects.value = response.slice(0, 3)
     console.log(projects)
   } catch (e) {
     errors.push(e)
