@@ -30,48 +30,45 @@ async function login() {
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="title">{{ $t("login.title") }}</h1>
-    <br>
-    <form action class="form" @submit.prevent="login">
-      <div class="field">
-        <label class="label">{{ $t("login.username_field") }}</label>
-        <div class="control">
-          <input class="input" type="text" v-model="username" :placeholder="$t('login.username_placeholder')">
-        </div>
-      </div>
 
-      <div class="field">
-        <label class="label">{{ $t("login.password") }}</label>
-        <div class="control">
-          <input class="input" type="password" v-model="password" :placeholder="$t('login.password_placeholder')">
-        </div>
+<div class="container">
+  <h1 class="title">{{ $t("login.title") }}</h1>
+    <form class="form" @submit.prevent="login">
+      <div class="form-group">
+        <label for="usernameInput" class="form-label">{{ $t("login.username_field") }}</label>
+        <input type="text" class="form-control" id="usernameInput" aria-describedby="userHelp" v-model="username" :placeholder="$t('login.username_placeholder')">
       </div>
-
-      <div class="field is-grouped buttons">
-        <div class="control left">
-          <button class="button is-success" type="submit" value="login">{{ $t("login.button_login") }}</button>
-        </div>
-        <div class="right">
-          <RouterLink to="/register"><button class="button is-link is-light">{{ $t("login.button_signup") }}</button></RouterLink>
-        </div>
+      <div class="form-group">
+        <label for="inputPassword" class="form-label">{{ $t("login.password") }}</label>
+        <input type="password" class="form-control" id="inputPassword" v-model="password" :placeholder="$t('login.password_placeholder')">
+      </div>
+      <div class="form-group buttons">
+        <button type="submit" class="btn btn-success" value="login">{{ $t("login.button_login") }}</button>
+        <RouterLink to="/register"><button class="btn btn-outline-primary">{{ $t("login.button_signup") }}</button></RouterLink>
       </div>
     </form>
-  </div>
+</div>
+
 </template>
 
 <style scoped>
 .container{
   max-width: 360px;
+  display: block;
 }
 
 .title{
   text-align: center;
 }
 
+.form{
+  display: block;
+}
+
 .buttons{
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
 }
 
 .left, .right{

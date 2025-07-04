@@ -10,18 +10,16 @@ defineProps(['project'])
 
 <template>
   <div class="card" @click="showId = project.id">
-    <div>
-      <figure class="image is-4by3">
-        <img :src="project.image" alt="Project image">
-      </figure>
+    <div class="media">
+      <img class="img-thumbnail" :src="project.image" alt="Imagen del proyecto">
     </div>
     <div class="card-content">
-      <div class="title is-6">
+      <div class="title">
         <div class="text">
           {{ sliceTextAt(project.name, 10) }}
         </div>
       </div>
-      <div class="content text">
+      <div class="text">
         <div>
           {{ sliceTextAt(project.description, 25) }}
         </div>
@@ -38,7 +36,7 @@ defineProps(['project'])
   cursor: pointer;
   border-radius: 8px;
   overflow: hidden;
-  width: 10em;
+  width: 12em;
   margin: 8px;
 }
 

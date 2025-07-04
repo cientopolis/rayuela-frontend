@@ -4,8 +4,6 @@ import Home from '../components/HomeItem.vue'
 </script>
 
 <template>
-  <main>
     <Home />
     <Projects />
-  </main>
 </template>

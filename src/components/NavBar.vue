@@ -2,7 +2,6 @@
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue'
 
-const showNav = ref(false)
 const langs = ['ES', 'EN', 'PT']
 const router = useRouter()
 const token = ref(false)
@@ -32,54 +31,50 @@ function logout(){
 </script>
 
 <template>
-  <nav class="navbar is-spaced is-light" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item">
-        <RouterLink to="/"><img src="@/assets/img/rayuela_logo.jpg" width="112" height="28"></RouterLink>
-      </a>
 
-      <a role="button" class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div class="navbar-menu" :class="{ 'is-active': showNav }">
-      <div class="navbar-start">
-        <div class="select is-rounded">
-          <select v-model="$i18n.locale">
-            <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
-              {{ lang }}
-            </option>
-          </select>
-        </div>
-        <RouterLink to="/about"><a class="navbar-item">{{ $t("navBar.about") }}</a></RouterLink>
-      </div>
-
-      <div class="navbar-end">
-        <div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="/"><img class="rounded" src="@/assets/img/rayuela_logo.jpg" width="112" height="28"></a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <div class="select btn btn-rounded">
+            <select v-model="$i18n.locale">
+              <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+                {{ lang }}
+              </option>
+            </select>
+          </div>
+        </li>
+        <li class="nav-item">
+          <RouterLink to="/about" class="nav-link"><a>{{ $t("navBar.about") }}</a></RouterLink>
+        </li>
+      </ul>
+      <form class="d-flex">
           <div v-if="token" class="navbar-container">
             <div class="user-info">
               <span>{{ username }}</span>
               <img :src="profile_image" width="32" height="32" alt="profile-pic">
             </div>
-            <button class="button is-danger" @click="logout()" value="logout">{{ $t("navBar.button_logout") }}</button>
+            <button class="btn btn-danger" @click="logout()" value="logout">{{ $t("navBar.button_logout") }}</button>
           </div>
           <div v-else>
             <div class="buttons" style="gap: 8px">
               <div class="left">
-                <RouterLink to="/login"><button class="button is-success">{{ $t("navBar.button_login") }}</button></RouterLink>
+                <RouterLink to="/login"><button class="btn btn-success">{{ $t("navBar.button_login") }}</button></RouterLink>
               </div>
               <div class="right">
-                <RouterLink to="/register"><button class="button is-link">{{ $t("navBar.button_signup") }}</button></RouterLink>
+                <RouterLink to="/register"><button class="btn btn-primary">{{ $t("navBar.button_signup") }}</button></RouterLink>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
 
 </template>
 
@@ -92,6 +87,11 @@ function logout(){
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
 }
 
 .user-info {

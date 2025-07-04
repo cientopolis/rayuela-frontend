@@ -13,32 +13,26 @@ const props = defineProps({
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
-      <div class="modal-container">
-        <div class="modal-header">
-          <slot name="header">
-            <h2 class="title is-link">{{ props.name }}</h2>
-        </slot>
+      <div class="modal-container rounded modal-sm">
+        <div class="modal-header content-align">
+          <h2 class="text-center">{{ props.name }}</h2>
         </div>
 
         <div class="modal-body">
-          <slot name="body">
-            <div class="modal-image">
-                <img :src="props.image" alt="Placeholder image">
-            </div>
-            <div v-if="props.web" class="modal-web">
-              <a :href="props.web" target="_blank"><button class="button is-info">{{ $t("project.button_website") }}</button></a>
-            </div>
-            <div class="modal-description">
-                <p>{{ props.description }}</p>
-            </div>
-          </slot>
+          <div class="modal-image">
+            <img :src="props.image" alt="Imagen del proyecto">
+          </div>
+          <div v-if="props.web" class="modal-web">
+            <a :href="props.web" target="_blank"><button class="btn btn-info">{{ $t("project.button_website") }}</button></a>
+          </div>
+          <div class="modal-description">
+              <p>{{ props.description }}</p>
+          </div>
         </div>
 
         <div class="modal-footer">
-          <slot name="footer">
-            <button id="join" class="button is-success" type="submit">{{ $t("project.button_join") }}</button>
-            <button id="close" class="button is-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
-          </slot>
+          <button id="join" class="btn btn-success" type="submit">{{ $t("project.button_join") }}</button>
+          <button id="close" class="btn btn-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
         </div>
       </div>
     </div>

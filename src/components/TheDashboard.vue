@@ -2,7 +2,6 @@
 import {onMounted, ref} from 'vue'
 import {useRouter} from 'vue-router';
 import {toast} from 'vue3-toastify';
-import axios from "axios";
 import 'vue3-toastify/dist/index.css';
 import ProjectCard from "@/components/ProjectCard.vue";
 import ViewMoreButton from "@/components/ViewMoreButton.vue";
@@ -12,15 +11,6 @@ const router = useRouter()
 const complete_name = ref("")
 const profile_image = ref("")
 const projects_user = ref([])
-// const projects_user =
-//       ref([{
-//         "name": "Proyecto a mano", "image": "http://localhost:8000/rayuelaApp/static/project_image/rio.jpg",
-//         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-//       },
-//       {
-//         "name": "Segundo proyecto", "image": "http://localhost:8000/rayuelaApp/static/project_image/rio.jpg",
-//         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-//       }])
 
 // TODO: pasar mensajes a locale
 onMounted(() => {
@@ -38,14 +28,6 @@ onMounted(() => {
 })
 
 async function user_data() {
-  const token = localStorage.getItem("token")
-  const headers = {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  }
-  //console.log("HEADERS: " + headers.headers.Authorization)
-
   AuthService.login()
       .then(response => {
         localStorage.setItem("complete_name", response[0].complete_name)
@@ -55,9 +37,7 @@ async function user_data() {
         profile_image.value = localStorage.getItem("profile_image")
         projects_user.value = JSON.parse(localStorage.getItem("projects_user"))
         console.log("AXIOS GET: " + JSON.stringify(response[0].projects))
-        //console.log(response[0].projects)
         console.log("LOCAL STORAGE: " + JSON.parse(localStorage.getItem("projects_user"))[0].name)
-        //console.log("NOMBRE: " + JSON.parse(localStorage.getItem("projects_user")))
       })
       .catch(error => {
         console.log("AXIOS CATCH: " + error)

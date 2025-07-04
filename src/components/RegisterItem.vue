@@ -79,65 +79,56 @@ async function signup() {
   <div class="container">
     <h1 class="title">{{ $t("register.title") }}</h1>
     <br>
-    <form action class="form" @submit.prevent="signup()">
-      <div class="field">
-        <label class="label">{{ $t("register.username_field") }}</label>
-        <div class="control">
-          <input class="input" type="text" v-model="username" :placeholder="$t('register.username_placeholder')">
-          <small v-if="errors.username">
-            <p class="help is-danger"> {{ errors.username }}</p>
-          </small>
-        </div>
+    <form action class="form" @submit.prevent="signup">
+      <!-- Username -->
+      <div class="form-group">
+        <label for="usernameInput" class="form-label">{{ $t("register.username_field") }}</label>
+        <input type="text" class="form-control" id="usernameInput" aria-describedby="userHelp" v-model="username" :placeholder="$t('register.username_placeholder')">
+        <small v-if="errors.username">
+          <p class="text-danger"> {{ errors.username }}</p>
+        </small>
       </div>
-
-      <div class="field">
-        <label class="label">{{ $t("register.email_field") }}</label>
-        <div class="control">
-          <input class="input" type="text" v-model="email" :placeholder="$t('register.email_placeholder')">
-          <small v-if="errors.email">
-            <p class="help is-danger"> {{ errors.email }}</p>
-          </small>
-        </div>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="emailInput" class="form-label">{{ $t("register.email_field") }}</label>
+        <input type="text" class="form-control" id="emailInput" aria-describedby="userHelp" v-model="email" :placeholder="$t('register.email_placeholder')">
+        <small v-if="errors.email">
+          <p class="text-danger"> {{ errors.email }}</p>
+        </small>
       </div>
-
-      <div class="field">
-        <label class="label">{{ $t("register.password1") }}</label>
-        <div class="control">
-          <input class="input" type="password" v-model="password1" :placeholder="$t('register.password1_placeholder')">
-          <small v-if="errors.password1">
-            <p class="help is-danger"> {{ errors.password1 }}</p>
-          </small>
-        </div>
+      <!-- Password 1 -->
+      <div class="form-group">
+        <label for="password1Input" class="form-label">{{ $t("register.password1") }}</label>
+        <input type="password" class="form-control" id="password1Input" v-model="password1" :placeholder="$t('register.password1_placeholder')">
+        <small v-if="errors.password1">
+          <p class="text-danger"> {{ errors.password1 }}</p>
+        </small>
       </div>
-
-      <div class="field">
-        <label class="label">{{ $t("register.password2") }}</label>
-        <div class="control">
-          <input class="input" type="password" v-model="password2" :placeholder="$t('register.password2_placeholder')">
-          <small v-if="errors.password2">
-            <p class="help is-danger"> {{ errors.password2 }}</p>
-          </small>
-        </div>
+      <!-- Password 2 -->
+      <div class="form-group">
+        <label for="password2Input" class="form-label">{{ $t("register.password2") }}</label>
+        <input type="password" class="form-control" id="password2Input" v-model="password2" :placeholder="$t('register.password2_placeholder')">
+        <small v-if="errors.password2">
+          <p class="text-danger"> {{ errors.password2 }}</p>
+        </small>
       </div>
-
-      <div class="field">
-        <div class="control">
-          <label class="checkbox">
-            <input type="checkbox" v-model="readAgreement">
-            {{ $t("register.checkbox") }}<a href="#">{{ $t("register.terms") }}</a>
-          </label>
-          <small v-if="errors.readAgreement">
-            <p class="help is-danger"> {{ errors.readAgreement }}</p>
-          </small>
-        </div>
+      <!-- Terms -->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="termsCheck" v-model="readAgreement">
+        <label class="form-check-label" for="termsCheck">
+          {{ $t("register.checkbox") }}<a href="#">{{ $t("register.terms") }}</a>
+        </label>
+        <small v-if="errors.readAgreement">
+          <p class="text-danger"> {{ errors.readAgreement }}</p>
+        </small>
       </div>
-
-      <div class="field is-grouped buttons">
-        <div class="control left">
-          <button class="button is-link" type="submit" value="register">{{ $t("register.button_signup") }}</button>
+      <!-- Buttons -->
+      <div class="form-group buttons">
+        <div class="left">
+          <button type="submit" class="btn btn-success" value="register">{{ $t("register.button_signup") }}</button>
         </div>
         <div class="right">
-          <RouterLink to="/login"><button class="button is-link is-light">{{ $t("register.button_login") }}</button></RouterLink>
+          <RouterLink to="/login"><button class="btn btn-outline-primary">{{ $t("register.button_login") }}</button></RouterLink>
         </div>
       </div>
     </form>
@@ -156,6 +147,11 @@ async function signup() {
 .buttons{
   display: flex;
   justify-content: space-between;
+  padding: 1rem;
+}
+
+input{
+  margin-bottom: 1rem;
 }
 
 .left, .right{

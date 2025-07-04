@@ -1,5 +1,4 @@
 <script setup>
-import axios from 'axios'
 import {ref, onMounted} from 'vue'
 import 'vue3-toastify/dist/index.css';
 import ProjectCard from "@/components/ProjectCard.vue";
