@@ -38,7 +38,7 @@ function logout(){
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="/"><img class="rounded" src="@/assets/img/rayuela_logo.jpg" width="112" height="28"></a>
+      <a class="navbar-brand" href="/"><img class="rounded" src="@/assets/img/rayuela-logo.jpg" background-size: cover width="48" height="48"></a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <div class="select btn btn-rounded">

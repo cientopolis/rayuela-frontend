@@ -7,7 +7,7 @@
     <h1 class="title">Rayuela</h1>
     <h2 class="subtitle">{{ $t("about.subtitle") }}</h2>
     <figure class="image">
-      <img class="rounded" src="../assets/img/rayuela_640.jpg">
+      <img class="rounded" src="../assets/img/rayuela-logo.jpg">
     </figure>
   </div>
 </template>
