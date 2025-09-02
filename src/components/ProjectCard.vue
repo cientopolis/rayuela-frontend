@@ -26,7 +26,7 @@ defineProps(['project'])
       </div>
     </div>
   </div>
-  <Project :show="showId === project.id" :name="project.name" :web="project.web" :image="project.image"
+  <Project :show="showId === project.id" :projectId="project.id" :name="project.name" :web="project.web" :image="project.image"
            :description="project.description" @close="showId=null">
   </Project>
 </template>

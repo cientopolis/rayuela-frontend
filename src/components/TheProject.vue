@@ -1,13 +1,34 @@
 <script setup>
-
+const errors = []
 const props = defineProps({
   show: Boolean,
+  projectId: Number,
   name: String,
   web: String,
   image: String,
   description: String
 })
 
+function saveProjectId(){
+    try {
+        localStorage.setItem("projectId", props.projectId)
+        //console.log("LOCAL STORAGE PROJECT ID: " + JSON.parse(localStorage.getItem("projectId")))
+    } catch (e) {
+        errors.push(e)
+    }
+}
+
+function isUserProject(){
+  const projects_user = localStorage.getItem('projects_user');
+  if (projects_user) {
+    for (let i = 0; i < JSON.parse(projects_user).length; i++) {
+      const project = JSON.parse(projects_user)[i];
+      if (project.id === props.projectId) {
+        return true;
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -31,7 +52,12 @@ const props = defineProps({
         </div>
 
         <div class="modal-footer">
-          <button id="join" class="btn btn-success" type="submit">{{ $t("project.button_join") }}</button>
+          <div v-if="isUserProject()">
+            <RouterLink to="/project" ><button id="details" class="btn btn-primary" type="submit" @click="saveProjectId()" >Ver detalles</button></RouterLink>
+          </div>
+          <div v-else>
+            <button id="join" class="btn btn-success" type="submit">{{ $t("project.button_join") }}</button>
+          </div>
           <button id="close" class="btn btn-danger" @click="$emit('close')">{{ $t("project.button_close") }}</button>
         </div>
       </div>
@@ -85,7 +111,7 @@ const props = defineProps({
   justify-content: center;
 }
 
-#join, #close{
+#join, #close, #details{
   display: flex;
   justify-content: center;
   padding: 1rem;
