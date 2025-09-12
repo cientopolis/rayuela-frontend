@@ -21,6 +21,11 @@ class ProjectsService extends RayuelaService{
         return axios.get(this.baseUrl + `/project_collection_tasks/?project_id=`+id)
             .then(res => res.data)
     }
+
+    async collectionTask(id) {
+        return axios.get(this.baseUrl + `/collection_tasks/`+id+`/`)
+            .then(res => res.data)
+    }
 }
 
 export default new ProjectsService(); // Sinleton pattern

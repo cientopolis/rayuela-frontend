@@ -37,6 +37,11 @@ const router = createRouter({
       name: 'project',
       component: () => import('../views/ProjectDetailsView.vue'),
       props: true
+    },
+    {
+      path: '/collection_task',
+      name: 'collection_task',
+      component: () => import('../views/CollectionTaskView.vue')
     }
   ]
 })

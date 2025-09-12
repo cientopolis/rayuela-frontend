@@ -8,6 +8,16 @@ const errors = []
 const projectId = JSON.parse(localStorage.getItem("projectId"))
 const project = ref({});
 const collectionTasks = ref([{}]);
+
+function saveCollectionTaskId(id){
+    try {
+        localStorage.setItem("collectionTaskId", id)
+        console.log("LOCAL STORAGE COLLECTION TASK ID: " + JSON.parse(localStorage.getItem("collectionTaskId")))
+    } catch (e) {
+        errors.push(e)
+    }
+}
+
 // const columns = ref([
 //     { data: 'id', title: 'ID' },
 //     { data: 'task_type', title: 'Tipo de tarea' },
@@ -57,6 +67,29 @@ onMounted(async () => {
 
 <div class="container rounded">
     <h3 class="h3">Tareas</h3>
+    <table class="table table-hover table-striped">
+        <thead>
+                <tr>
+                <th>#</th>
+                <th>Tipo de tarea</th>
+                <th>Área</th>
+                <th>Intervalo de tiempo</th>
+                <th>Completada</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="task in collectionTasks" :key="task.id">
+                <td>{{ task.id }}</td>
+                <td>{{ task.task_type }}</td> 
+                <td>{{ task.sub_area }}</td>
+                <td>{{ task.time_restriction }}</td>
+                <td>{{ completed(task) }}</td>
+                <RouterLink to="/collection_task"><button class="btn btn-primary" @click="saveCollectionTaskId(task.id)">Realizar tarea</button></RouterLink>
+            </tr>
+        </tbody>
+    </table>
+
     <!-- <DataTable
         class="table table-hover table-striped"
         width="100%"
@@ -73,29 +106,7 @@ onMounted(async () => {
             </tr>
         </thead>
     </DataTable>  -->
-
-    <table class="table table-hover table-striped">
-        <thead>
-                <tr>
-                <th>#</th>
-                <th>Tipo de tarea</th>
-                <th>Área</th>
-                <th>Intervalo de tiempo</th>
-                <th>Completada</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="task in collectionTasks" :key="task.id">
-            <td>{{ task.id }}</td>
-            <td>{{ task.task_type }}</td> 
-            <td>{{ task.sub_area }}</td>
-            <td>{{ task.time_restriction }}</td>
-            <td>{{ completed(task) }}</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
-
 </template>
 
 <style>
@@ -127,5 +138,3 @@ onMounted(async () => {
     width: 100%;
 }
 </style>
-
-
