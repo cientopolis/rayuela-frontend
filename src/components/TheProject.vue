@@ -79,7 +79,7 @@ function isUserProject(){
 }
 
 .modal-container {
-  max-width: 1080px;
+  max-width: 720px;
   margin: auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -96,14 +96,28 @@ function isUserProject(){
 
 .modal-body {
   flex-wrap: wrap;
-  max-width: 1080px;
+  max-width: 720px;
   margin: 10px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.modal-image img{
+  max-width: 100%;
+  padding: 1rem;
+  height: auto;
+}
+
+.modal-web {
   text-align: center;
 }
 
-.modal-image{
-  max-width: 100%;
+.modal-description{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
   padding: 1rem;
+  font-size: medium;
 }
 
 .modal-footer{
@@ -116,14 +130,6 @@ function isUserProject(){
   justify-content: center;
   padding: 1rem;
   margin: 1rem;
-}
-
-.modal-description{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 1rem;
-  font-size: large;
 }
 
 /*
