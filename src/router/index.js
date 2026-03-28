@@ -39,9 +39,9 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/collection_task',
-      name: 'collection_task',
-      component: () => import('../views/CollectionTaskView.vue')
+      path: '/checkin',
+      name: 'checkin',
+      component: () => import('../views/CheckInView.vue')
     }
   ]
 })

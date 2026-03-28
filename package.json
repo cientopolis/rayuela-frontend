@@ -10,8 +10,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^11.0.2",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.7",
+    "bootstrap-table": "^1.24.1",
+    "datatables.net-bs5": "^2.3.3",
+    "datatables.net-responsive-bs5": "^3.0.6",
+    "datatables.net-vue3": "^3.0.4",
+    "leaflet": "^1.9.4",
+    "leaflet-easybutton": "^2.4.0",
     "vue": "^3.3.4",
     "vue-i18n": "^9.3.0",
     "vue-router": "^4.2.4",

@@ -9,14 +9,14 @@ const projectId = JSON.parse(localStorage.getItem("projectId"))
 const project = ref({});
 const collectionTasks = ref([{}]);
 
-function saveCollectionTaskId(id){
-    try {
-        localStorage.setItem("collectionTaskId", id)
-        console.log("LOCAL STORAGE COLLECTION TASK ID: " + JSON.parse(localStorage.getItem("collectionTaskId")))
-    } catch (e) {
-        errors.push(e)
-    }
-}
+// function saveCollectionTaskId(id){
+//     try {
+//         localStorage.setItem("collectionTaskId", id)
+//         console.log("LOCAL STORAGE COLLECTION TASK ID: " + JSON.parse(localStorage.getItem("collectionTaskId")))
+//     } catch (e) {
+//         errors.push(e)
+//     }
+// }
 
 // const columns = ref([
 //     { data: 'id', title: 'ID' },
@@ -43,7 +43,7 @@ onMounted(async () => {
         project.value = responseDetails
         const responseCollectionTasks = await ProjectsService.projectCollectionTasks(projectId);
         collectionTasks.value = responseCollectionTasks
-        console.log("COLLECTION TASKS: ", JSON.stringify(collectionTasks.value))
+        //console.log("COLLECTION TASKS: ", JSON.stringify(collectionTasks.value))
     } catch (e) {
         errors.push(e)
     }
@@ -62,11 +62,12 @@ onMounted(async () => {
     <div v-if="project.web">
         <a :href="project.web" target="_blank"><button class="btn btn-info web">{{ $t("project.button_website") }}</button></a>
     </div>
-
 </div>
-
+<div class="checkin">
+    <RouterLink to="/checkin"><button class="btn btn-primary">Registrar tarea</button></RouterLink>
+</div>
 <div class="container rounded">
-    <h3 class="h3">Tareas</h3>
+    <h3 class="h3">Listado de tareas</h3>
     <table class="table table-hover table-striped">
         <thead>
                 <tr>
@@ -75,7 +76,6 @@ onMounted(async () => {
                 <th>Área</th>
                 <th>Intervalo de tiempo</th>
                 <th>Completada</th>
-                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -85,7 +85,6 @@ onMounted(async () => {
                 <td>{{ task.sub_area }}</td>
                 <td>{{ task.time_restriction }}</td>
                 <td>{{ completed(task) }}</td>
-                <RouterLink to="/collection_task"><button class="btn btn-primary" @click="saveCollectionTaskId(task.id)">Realizar tarea</button></RouterLink>
             </tr>
         </tbody>
     </table>
@@ -137,4 +136,9 @@ onMounted(async () => {
     padding: 1rem;
     width: 100%;
 }
+
+.checkin {
+    text-align: center;
+}
+
 </style>
