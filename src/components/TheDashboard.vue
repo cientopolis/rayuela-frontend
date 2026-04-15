@@ -36,8 +36,6 @@ async function user_data() {
         complete_name.value = localStorage.getItem("complete_name")
         profile_image.value = localStorage.getItem("profile_image")
         projects_user.value = JSON.parse(localStorage.getItem("projects_user"))
-        console.log("AXIOS GET: " + JSON.stringify(response[0].projects))
-        console.log("LOCAL STORAGE: " + JSON.parse(localStorage.getItem("projects_user"))[0].name)
       })
       .catch(error => {
         console.log("AXIOS CATCH: " + error)

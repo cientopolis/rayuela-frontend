@@ -12,7 +12,6 @@ const props = defineProps({
 function saveProjectId(){
     try {
         localStorage.setItem("projectId", props.projectId)
-        //console.log("LOCAL STORAGE PROJECT ID: " + JSON.parse(localStorage.getItem("projectId")))
     } catch (e) {
         errors.push(e)
     }
