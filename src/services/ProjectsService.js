@@ -32,6 +32,15 @@ class ProjectsService extends RayuelaService {
             .then(res => res.data)
     }
 
+    async getCheckin(id) {
+        const headers = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+
+        return axios.get(this.baseUrl + `/checkin/` + id + `/`, { headers })
+            .then(res => res.data)
+    }
+
     async setCheckin(lat, lon, datetime, project, task_type) {
         const headers = {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -46,6 +55,24 @@ class ProjectsService extends RayuelaService {
         }
 
         return axios.post(this.baseUrl + `/game_move/`, null, { headers, params })
+    }
+
+    async getGameMove(id) {
+        const headers = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+
+        return axios.get(this.baseUrl + `/game_move/?checkin_id=` + id, { headers })
+            .then(res => res.data)
+    }
+
+    async getCompetition(id) {
+        const headers = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+
+        return axios.get(this.baseUrl + `/competition/?project_id=` + id, { headers })
+            .then(res => res.data)
     }
 }
 

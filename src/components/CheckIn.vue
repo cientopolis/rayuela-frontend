@@ -23,16 +23,25 @@ const subAreas = ref({});
 var map = {};
 var point = {};
 
+function saveGameMoveId(checkinId){
+    try {
+        localStorage.setItem("checkinId", checkinId)
+    } catch (e) {
+        errors.push(e)
+    }
+}
+
 async function sendData() {
     const task_types_form = document.getElementById("task_types");
     await ProjectsService.setCheckin(point._latlng.lat, point._latlng.lng, date.value, projectId,
         parseInt(task_types_form.options[task_types_form.selectedIndex].value))
-        .then( () => {
-            toast.success('¡Carga de checkin exitosa!', {autoClose: 1500});
+        .then( (response) => {
+            //toast.success('¡Carga de checkin exitosa!', {autoClose: 1500});
             setTimeout(() => {
-                router.push({ path: '/project' })
+                saveGameMoveId(response.data.checkin)
+                router.push({ path: '/solved' })
                 //TODO: Enviar a página con datos de la tarea realizada
-            },1500)
+            },500)
             }).catch ( (err) => {
             Object.keys(err?.response?.data).map( k => {
                 toast.error(err.response.data[k], {autoClose: 3000});
@@ -40,7 +49,7 @@ async function sendData() {
         })
 }
 
-function verDatos() {
+function imprimirDatos() {
     const task_types_form = document.getElementById("task_types");
     console.log("TAREA: ", task_types_form.options[task_types_form.selectedIndex].value);
     console.log("PUNTO: ", point._latlng);
@@ -136,21 +145,23 @@ onMounted(async () => {
 
         <!-- Fecha y hora -->
         <div class="form-group">
-        <label>Fecha y hora</label>
-        <Datepicker id="date" v-model="date" time-picker-inline :format="format" locale="es" cancelText="Cancelar" selectText="Seleccionar" ></Datepicker>
+            <label>Fecha y hora</label>
+            <Datepicker id="date" v-model="date" time-picker-inline :format="format" locale="es" cancelText="Cancelar" selectText="Seleccionar" ></Datepicker>
         </div>
         <!-- TODO: bloquear carga de fecha hacia adelante -->
         <button class="btn btn-success" id="submit" type="submit" value="sendData">Cargar</button>
     </form>
         <!-- BORRAR: muestra de datos en console.log -->
         <br>
-        <button class="btn btn-success" @click="verDatos()" >Imprimir fuera Form</button>
+        <button class="btn btn-success" @click="imprimirDatos()" >Imprimir en consola</button>
 </div>
 </template>
 
 <style>
 label {
     padding: 1rem;
+    text-align: center;
+    align-items: center;
 }
 
 .container, form {
@@ -166,15 +177,23 @@ label {
     width: 100%;
 }
 
+.form-group select {
+    text-align: center;
+}
+
+.dp__pointer {
+    text-align: center;
+}
+
 .map-container {
-    max-width: 896px;
+    max-width: 100%;
 }
 
 .map {
     position: relative;
     border: 2px solid black;
     border-radius: 8px;
-    height: 480px;
+    height: 560px;
     width: 100%;
 }
 
